@@ -45,6 +45,7 @@ public class AllDashboardPage extends AbstractBasePage{
 
     public void pressAddNewDashboardButton() {
         driverHelper.waitForElementIsVisible(addNewDashboardButton);
+        driverHelper.waitForElementToBeClickable(addNewDashboardButton);
         driverHelper.click(addNewDashboardButton);
     }
 

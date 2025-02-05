@@ -125,13 +125,24 @@
 
     <dependency>
       <groupId>com.epam.reportportal</groupId>
-      <artifactId>agent-java-junit5</artifactId>
-      <version>5.1.2</version>
+      <artifactId>agent-java-cucumber6</artifactId>
+      <version>5.3.5</version>
     </dependency>
     <dependency>
       <groupId>com.epam.reportportal</groupId>
       <artifactId>logger-java-logback</artifactId>
       <version>5.1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-cucumber7-jvm</artifactId>
+      <version>2.28.0</version>
+    </dependency>
+    <!--Aspectj-->
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>1.9.2</version>
     </dependency>
 	</dependencies>
 	<dependencyManagement>
