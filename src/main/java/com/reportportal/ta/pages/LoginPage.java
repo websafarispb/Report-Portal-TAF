@@ -12,7 +12,8 @@ import org.springframework.context.annotation.Lazy;
 @PageObject
 public class LoginPage extends AbstractBasePage {
 
-    private String url = "http://localhost:8080/";
+    //private String url = "http://localhost:8080/";
+    private String url = "http://host.docker.internal:8080/";
 
     @FindBy(name = "login")
     private WebElement rpLoginField;
@@ -34,6 +35,7 @@ public class LoginPage extends AbstractBasePage {
 
     public void login(String username) {
         driverHelper.waitForElementIsVisible(rpLoginField);
+        driverHelper.waitForElementToBeClickable(rpLoginField);
         driverHelper.sendKeys(rpLoginField, username);
     }
 
