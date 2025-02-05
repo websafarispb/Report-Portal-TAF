@@ -21,8 +21,6 @@ public class ReportPortalDashboardService {
 
     public Response deleteDashboard(final String dashboardId) {
         log.info("deleteDashboard");
-        log.info("deleteDashboard");
-        log.info("deleteDashboard");
         return given()
             .spec(requestSpecification)
             .basePath("/{project}/dashboard/{id}")

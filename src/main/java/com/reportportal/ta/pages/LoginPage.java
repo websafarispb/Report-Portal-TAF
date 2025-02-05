@@ -6,13 +6,17 @@ import com.reportportal.ta.webdriver.WebDriverWrapper;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 
 //@Slf4j
 @PageObject
 public class LoginPage extends AbstractBasePage {
 
-    private String url = "http://localhost:8080/";
+    //private String url = "http://localhost:8080/";
+    //private String siteUrl = "http://host.docker.internal:8080/";
+    @Value("${com.reportportal.ta.ui.url}")
+    private String siteUrl;
 
     @FindBy(name = "login")
     private WebElement rpLoginField;
@@ -24,7 +28,7 @@ public class LoginPage extends AbstractBasePage {
     private WebElement submitButton;
 
     public void openPage() {
-        webDriverWrapper.navigate().to(url);
+        webDriverWrapper.navigate().to(siteUrl);
     }
 
     public void submit() {
@@ -34,6 +38,7 @@ public class LoginPage extends AbstractBasePage {
 
     public void login(String username) {
         driverHelper.waitForElementIsVisible(rpLoginField);
+        driverHelper.waitForElementToBeClickable(rpLoginField);
         driverHelper.sendKeys(rpLoginField, username);
     }
 

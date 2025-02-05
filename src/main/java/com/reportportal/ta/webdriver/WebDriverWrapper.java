@@ -2,13 +2,17 @@ package com.reportportal.ta.webdriver;
 
 import static java.lang.String.valueOf;
 
+import java.io.File;
 import java.util.List;
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.Nullable;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -133,5 +137,27 @@ public class WebDriverWrapper implements WebDriver {
      */
     private String getExecutionTime(long startTime) {
         return valueOf(System.currentTimeMillis() - startTime);
+    }
+
+    /**
+     * Take screenshot of the page.
+     *
+     * @return byte array
+     */
+    public byte[] takeScreenshotAsByteArray() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+
+    public File takeScreenshotAsFile() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+    }
+
+    /**
+     * Get current browser session id.
+     *
+     * @return current session id
+     */
+    public String getSessionId() {
+        return ((RemoteWebDriver) driver).getSessionId().toString();
     }
 }

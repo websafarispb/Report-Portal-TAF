@@ -10,7 +10,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 @CucumberContextConfiguration
 @SpringBootTest
 @CucumberOptions(
-    features = "src/test/resources/features"
+    features = "src/test/resources/features",
+    plugin = {
+        "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
+        "pretty", "com.epam.reportportal.cucumber.StepReporter",
+        "com.reportportal.ta.hooks.CucumberEventListener"
+    }
 )
 public class RunTests {
 }
+//com/reportportal/ta/hooks/CucumberEventListener.java
