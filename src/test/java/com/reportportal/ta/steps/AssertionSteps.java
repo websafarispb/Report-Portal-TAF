@@ -9,7 +9,7 @@ public class AssertionSteps extends AbstractSteps {
     @Then("I check that dashboard with name {string} is displayed")
     public void dashboardWithNameIsDisplayed(String dashboardName) {
 
-        assertThat(allDashboardPage.isDashboardWithNameDisplayed(dashboardName))
+        assertThat(allDashboardPage.isDashboardWithNameDisplayed(dashboardName + "FALSE"))
             .as("Check if dashboard with name '%s' is displayed", dashboardName)
             .isTrue();
     }

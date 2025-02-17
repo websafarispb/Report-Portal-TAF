@@ -20,7 +20,6 @@ public class DashboardTestDataDeletion extends AbstractTestDataDeletion {
 
     @Override
     public void deleteCreatedTestData() {
-        log.info("TRY TO DELETE SOMETHING !!! DASHBOARD");
         getDataForDeletion(DASHBOARD_IDS)
             .ifPresent(actions -> actions.forEach(reportPortalDashboardService::deleteDashboard));
     }

@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +21,14 @@ public class AllDashboardPage extends AbstractBasePage{
     private static final int TIME_OUT = 4000;
     private static final int timeout = 30000;
     private static final String UNABLE_TO_FIND_WEB_ELEMENT = "UNABLE_TO_FIND_WEB_ELEMENT";
-    private String url = "http://localhost:8080/ui/#default_personal/dashboard";
+    @Value("${com.reportportal.ta.ui.url}")
+    private String baseUrl;
+
+    private final String pagePath = "ui/#default_personal/dashboard"; // Относительный путь
+
+    public String getFullUrl() {
+        return baseUrl + pagePath;
+    }
 
 
     @FindBy(xpath = "//button[@type='button' and .//span[text()='Add New Dashboard']]")
@@ -35,7 +43,7 @@ public class AllDashboardPage extends AbstractBasePage{
     DashboardTable dashboardTable;
 
     public void openPage() {
-        webDriverWrapper.get(url);
+        webDriverWrapper.get(getFullUrl());
     }
 
     public void waitDashboardNameElementIsVisible(String dashboardName) {
@@ -45,6 +53,7 @@ public class AllDashboardPage extends AbstractBasePage{
 
     public void pressAddNewDashboardButton() {
         driverHelper.waitForElementIsVisible(addNewDashboardButton);
+        driverHelper.waitForElementToBeClickable(addNewDashboardButton);
         driverHelper.click(addNewDashboardButton);
     }
 
